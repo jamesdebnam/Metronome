@@ -1,0 +1,20 @@
+svg {
+  position: absolute;
+  top: 125px;
+  z-index: 4;
+
+  /* transform: translateX(-50%); */
+}
+
+.container {
+  margin-top: 50px;
+}
+
+.card-body {
+  padding-top: 600px;
+}
+
+button {
+  width: 100%;
+  z-index: 1;
+}
