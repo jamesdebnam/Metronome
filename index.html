@@ -37,12 +37,20 @@
           <h1>Simple Metronome</h1>
         </div>
         <div class="card-body">
-          <svg height="80%" width="100%">
+          <svg height="500px" width="500px">
             <circle cx="250px" cy="250px" r="250px" fill="turquoise" />
           </svg>
-          <svg height="80%" width="100%">
-            <circle cx="250px" cy="250px" r="250px" fill="lightseagreen" />
+          <svg height="500px" width="500px">
+            <circle cx="250px" cy="250px" r="50px" fill="lightseagreen" />
+            <p>100</p>
           </svg>
+          <input
+            class="form-control form-control-lg"
+            type="number"
+            max="170"
+            min="40"
+            placeholder="bpm between 40 and 170"
+          />
         </div>
       </div>
       <button type="button" class="btn btn-primary">Start metronome</button>

@@ -1,9 +1,11 @@
 svg {
   position: absolute;
-  top: 125px;
-  z-index: 4;
+  top: 20px;
+  left: 50%;
+  right: 50%;
+  z-index: 1;
 
-  /* transform: translateX(-50%); */
+  transform: translateX(-50%);
 }
 
 .container {
@@ -12,9 +14,24 @@ svg {
 
 .card-body {
   padding-top: 600px;
+  position: relative;
 }
 
 button {
   width: 100%;
-  z-index: 1;
+}
+p {
+  font-size: 50px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 232.5px;
+  z-index: 2;
+}
+h1 {
+  text-align: center;
+}
+
+input {
+  z-index: 2;
 }
