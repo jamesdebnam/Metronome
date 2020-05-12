@@ -12,10 +12,19 @@ button.addEventListener("click", toggleMetronome);
 
 //this needs sorting
 bpmInput.addEventListener("input", (e) => {
-  console.log(e);
+  let cycleLength = bpmToCycle(e.target.value);
+  changeMetronome(cycleLength);
 });
 
-function toggleMetronome() {
+function changeMetronome(cycleLength) {
+  clearInterval(interval);
+  isPlaying = true;
+  button.innerHTML = "Stop metronome";
+  setPulse();
+  interval = setInterval(playClick, cycleLength);
+}
+
+function toggleMetronome(cycleLength) {
   if (isPlaying) {
     isPlaying = false;
     button.innerHTML = "Start metronome";
