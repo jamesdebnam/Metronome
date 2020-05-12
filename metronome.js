@@ -7,18 +7,21 @@ let interval = null;
 let isPlaying = false;
 const click = new Audio("tick.mp3");
 let pulseInterval;
+displayNumber.innerHTML = bpmInput.value;
 
 const bpmToCycle = (num) => 60000 / num;
 const playClick = () => click.play();
 
-let cycleLength = bpmToCycle(bpmInput.value);
+let cycleLength;
+
 button.addEventListener("click", function () {
-  toggleMetronome(cycleLength);
+  toggleMetronome(bpmToCycle(bpmInput.value));
 });
 
 bpmRange.addEventListener("input", () => {
   displayNumber.innerHTML = bpmRange.value;
   bpmInput.value = bpmRange.value;
+  setCircle(bpmInput.value);
   let cycleLength = bpmToCycle(bpmRange.value);
   changeMetronome(cycleLength);
 });
@@ -68,8 +71,8 @@ function setPulse(cycleLength) {
 }
 
 function pulse(cycleLength) {
-  innerCircle.setAttribute("r", 1.5 * bpmRange.value);
+  innerCircle.setAttribute("r", 1.5 * bpmInput.value);
   setTimeout(() => {
-    innerCircle.setAttribute("r", 1.5 * bpmRange.value + 10);
+    innerCircle.setAttribute("r", 1.5 * bpmInput.value + 10);
   }, cycleLength / 2);
 }
