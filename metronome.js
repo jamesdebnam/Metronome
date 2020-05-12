@@ -2,19 +2,24 @@ const button = document.querySelector("button");
 const bpmInput = document.querySelector(".form-control");
 const bpmRange = document.querySelector(".custom-range");
 const displayNumber = document.querySelector(".display-number");
+const innerCircle = document.querySelector("#inner-circle");
 let interval = null;
 let isPlaying = false;
 const click = new Audio("tick.mp3");
 let cycleLength = 1000;
+let pulseInterval;
 
 const bpmToCycle = (num) => 60000 / num;
 const playClick = () => click.play();
 
-button.addEventListener("click", toggleMetronome);
+button.addEventListener("click", function () {
+  toggleMetronome(cycleLength);
+});
 
 bpmRange.addEventListener("input", () => {
   displayNumber.innerHTML = bpmRange.value;
   bpmInput.value = bpmRange.value;
+  setCircle(bpmRange.value);
   let cycleLength = bpmToCycle(bpmRange.value);
   changeMetronome(cycleLength);
 });
@@ -28,8 +33,9 @@ bpmInput.addEventListener("input", (e) => {
 function changeMetronome(cycleLength) {
   if (isPlaying) {
     clearInterval(interval);
+    clearInterval(pulseInterval);
     interval = setInterval(playClick, cycleLength);
-    setPulse();
+    setPulse(cycleLength);
   }
 }
 
@@ -37,16 +43,26 @@ function toggleMetronome(cycleLength) {
   if (isPlaying) {
     isPlaying = false;
     button.innerHTML = "Start metronome";
-    setPulse();
+    clearInterval(pulseInterval);
     clearInterval(interval);
   } else {
     isPlaying = true;
     button.innerHTML = "Stop metronome";
-    setPulse();
+    setPulse(cycleLength);
     interval = setInterval(playClick, cycleLength);
   }
 }
+function setCircle(bpm) {
+  innerCircle.setAttribute("r", 1.5 * bpm);
+}
 
-function setPulse() {
-  // set a pulsating animation for the inner svg circle
+function setPulse(cycleLength) {
+  pulseInterval = setInterval(pulse, cycleLength, cycleLength);
+}
+
+function pulse(cycleLength) {
+  innerCircle.setAttribute("r", 1.5 * bpmRange.value);
+  setTimeout(() => {
+    innerCircle.setAttribute("r", 1.5 * bpmRange.value + 10);
+  }, cycleLength / 2);
 }
