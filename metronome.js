@@ -27,6 +27,8 @@ bpmRange.addEventListener("input", () => {
 bpmInput.addEventListener("input", (e) => {
   let cycleLength = bpmToCycle(e.target.value);
   changeMetronome(cycleLength);
+  setCircle(e.target.value);
+  bpmRange.value = e.target.value;
   displayNumber.innerHTML = `${e.target.value}`;
 });
 
@@ -53,16 +55,23 @@ function toggleMetronome(cycleLength) {
   }
 }
 function setCircle(bpm) {
-  innerCircle.setAttribute("r", 1.5 * bpm);
-}
+  if (bpm > 160 || bpm < 40) {
+    innerCircle.setAttribute("fill", "crimson");
+    innerCircle.setAttribute("r", 1.5 * bpm);
+  } else {
+    innerCircle.setAttribute("fill", "lightseagreen");
 
-function setPulse(cycleLength) {
-  pulseInterval = setInterval(pulse, cycleLength, cycleLength);
-}
+    innerCircle.setAttribute("r", 1.5 * bpm);
+  }
 
-function pulse(cycleLength) {
-  innerCircle.setAttribute("r", 1.5 * bpmRange.value);
-  setTimeout(() => {
-    innerCircle.setAttribute("r", 1.5 * bpmRange.value + 10);
-  }, cycleLength / 2);
+  function setPulse(cycleLength) {
+    pulseInterval = setInterval(pulse, cycleLength, cycleLength);
+  }
+
+  function pulse(cycleLength) {
+    innerCircle.setAttribute("r", 1.5 * bpmRange.value);
+    setTimeout(() => {
+      innerCircle.setAttribute("r", 1.5 * bpmRange.value + 10);
+    }, cycleLength / 2);
+  }
 }
