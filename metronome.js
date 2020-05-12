@@ -6,20 +6,19 @@ const innerCircle = document.querySelector("#inner-circle");
 let interval = null;
 let isPlaying = false;
 const click = new Audio("tick.mp3");
-let cycleLength = 1000;
 let pulseInterval;
 
 const bpmToCycle = (num) => 60000 / num;
 const playClick = () => click.play();
 
+let cycleLength = bpmToCycle(bpmInput.value);
 button.addEventListener("click", function () {
-  toggleMetronome(bpmRange.value);
+  toggleMetronome(cycleLength);
 });
 
 bpmRange.addEventListener("input", () => {
   displayNumber.innerHTML = bpmRange.value;
   bpmInput.value = bpmRange.value;
-  setCircle(bpmRange.value);
   let cycleLength = bpmToCycle(bpmRange.value);
   changeMetronome(cycleLength);
 });
