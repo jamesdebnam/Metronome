@@ -13,7 +13,7 @@ const bpmToCycle = (num) => 60000 / num;
 const playClick = () => click.play();
 
 button.addEventListener("click", function () {
-  toggleMetronome(cycleLength);
+  toggleMetronome(bpmRange.value);
 });
 
 bpmRange.addEventListener("input", () => {
@@ -60,7 +60,6 @@ function setCircle(bpm) {
     innerCircle.setAttribute("r", 1.5 * bpm);
   } else {
     innerCircle.setAttribute("fill", "lightseagreen");
-
     innerCircle.setAttribute("r", 1.5 * bpm);
   }
 }
