@@ -1,5 +1,7 @@
 const button = document.querySelector("button");
-const bpmInput = document.querySelector("input");
+const bpmInput = document.querySelector(".form-control");
+const bpmRange = document.querySelector(".custom-range");
+const displayNumber = document.querySelector(".display-number");
 let interval = null;
 let isPlaying = false;
 const click = new Audio("tick.mp3");
@@ -10,18 +12,25 @@ const playClick = () => click.play();
 
 button.addEventListener("click", toggleMetronome);
 
-//this needs sorting
-bpmInput.addEventListener("input", (e) => {
-  let cycleLength = bpmToCycle(e.target.value);
+bpmRange.addEventListener("input", () => {
+  displayNumber.innerHTML = bpmRange.value;
+  bpmInput.value = bpmRange.value;
+  let cycleLength = bpmToCycle(bpmRange.value);
   changeMetronome(cycleLength);
 });
 
+bpmInput.addEventListener("input", (e) => {
+  let cycleLength = bpmToCycle(e.target.value);
+  changeMetronome(cycleLength);
+  displayNumber.innerHTML = `${e.target.value}`;
+});
+
 function changeMetronome(cycleLength) {
-  clearInterval(interval);
-  isPlaying = true;
-  button.innerHTML = "Stop metronome";
-  setPulse();
-  interval = setInterval(playClick, cycleLength);
+  if (isPlaying) {
+    clearInterval(interval);
+    interval = setInterval(playClick, cycleLength);
+    setPulse();
+  }
 }
 
 function toggleMetronome(cycleLength) {

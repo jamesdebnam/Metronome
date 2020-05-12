@@ -34,7 +34,8 @@
     <div class="container">
       <div class="card">
         <div class="card-header">
-          <h1>Simple Metronome</h1>
+          <h1 class="font-weight-bold">Simple Metronome</h1>
+          <h4 class="text-secondary">Please choose a bpm between 40 and 160</h4>
         </div>
         <div class="card-body">
           <svg height="500px" width="500px">
@@ -42,15 +43,22 @@
           </svg>
           <svg height="500px" width="500px">
             <circle cx="250px" cy="250px" r="50px" fill="lightseagreen" />
-            <p>100</p>
+            <p class="display-number font-weight-bold text-secondary">
+              60
+            </p>
           </svg>
-          <input
-            class="form-control form-control-lg"
-            type="number"
-            max="170"
-            min="40"
-            placeholder="bpm between 40 and 170"
-          />
+          <div class="controls">
+            <input
+              class="form-control form-control-lg font-weight-bold text-primary ml-2 mt-1"
+              type="number"
+              max="160"
+              min="40"
+              value="60"
+              placeholder="60"
+              onkeyup="this.value=this.value.replace(/[^\d]/,'')"
+            />
+            <input type="range" class="custom-range" min="40" max="160" />
+          </div>
         </div>
       </div>
       <button type="button" class="btn btn-primary">Start metronome</button>

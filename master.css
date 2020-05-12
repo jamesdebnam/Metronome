@@ -7,6 +7,11 @@ svg {
 
   transform: translateX(-50%);
 }
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
 
 .container {
   margin-top: 50px;
@@ -19,6 +24,7 @@ svg {
 
 button {
   width: 100%;
+  margin-top: 5px;
 }
 p {
   font-size: 50px;
@@ -28,10 +34,17 @@ p {
   top: 232.5px;
   z-index: 2;
 }
-h1 {
+h1,
+h4 {
   text-align: center;
 }
 
 input {
   z-index: 2;
+  margin-inline: 8px;
+}
+
+.form-control {
+  width: 20%;
+  text-align: center;
 }
