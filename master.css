@@ -25,6 +25,7 @@ svg {
 button {
   width: 100%;
   margin-top: 5px;
+  margin-bottom: 30px;
 }
 p {
   font-size: 50px;
@@ -41,6 +42,7 @@ h4 {
 
 input {
   z-index: 2;
+  -webkit-margin-start: 10px;
   margin-inline: 8px;
 }
 

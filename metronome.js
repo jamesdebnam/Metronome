@@ -63,15 +63,15 @@ function setCircle(bpm) {
 
     innerCircle.setAttribute("r", 1.5 * bpm);
   }
+}
 
-  function setPulse(cycleLength) {
-    pulseInterval = setInterval(pulse, cycleLength, cycleLength);
-  }
+function setPulse(cycleLength) {
+  pulseInterval = setInterval(pulse, cycleLength, cycleLength);
+}
 
-  function pulse(cycleLength) {
-    innerCircle.setAttribute("r", 1.5 * bpmRange.value);
-    setTimeout(() => {
-      innerCircle.setAttribute("r", 1.5 * bpmRange.value + 10);
-    }, cycleLength / 2);
-  }
+function pulse(cycleLength) {
+  innerCircle.setAttribute("r", 1.5 * bpmRange.value);
+  setTimeout(() => {
+    innerCircle.setAttribute("r", 1.5 * bpmRange.value + 10);
+  }, cycleLength / 2);
 }
