@@ -14,6 +14,26 @@ const playClick = () => click.play();
 
 let cycleLength;
 
+document.addEventListener("keydown", (e) => {
+  if (e.keyCode == "32") {
+    toggleMetronome(bpmToCycle(bpmInput.value));
+  } else if (e.keyCode == "37") {
+    bpmRange.value--;
+    displayNumber.innerHTML = bpmRange.value;
+    bpmInput.value = bpmRange.value;
+    setCircle(bpmInput.value);
+    let cycleLength = bpmToCycle(bpmRange.value);
+    changeMetronome(cycleLength);
+  } else if (e.keyCode == "39") {
+    bpmRange.value++;
+    displayNumber.innerHTML = bpmRange.value;
+    bpmInput.value = bpmRange.value;
+    setCircle(bpmInput.value);
+    let cycleLength = bpmToCycle(bpmRange.value);
+    changeMetronome(cycleLength);
+  }
+});
+
 button.addEventListener("click", function () {
   toggleMetronome(bpmToCycle(bpmInput.value));
 });
@@ -50,6 +70,8 @@ function toggleMetronome(cycleLength) {
     clearInterval(pulseInterval);
     clearInterval(interval);
   } else {
+    console.log("sfdds");
+
     isPlaying = true;
     button.innerHTML = "Stop metronome";
     setPulse(cycleLength);
