@@ -19,18 +19,10 @@ document.addEventListener("keydown", (e) => {
     toggleMetronome(bpmToCycle(bpmInput.value));
   } else if (e.keyCode == "37") {
     bpmRange.value--;
-    displayNumber.innerHTML = bpmRange.value;
-    bpmInput.value = bpmRange.value;
-    setCircle(bpmInput.value);
-    let cycleLength = bpmToCycle(bpmRange.value);
-    changeMetronome(cycleLength);
+    setNumbers();
   } else if (e.keyCode == "39") {
     bpmRange.value++;
-    displayNumber.innerHTML = bpmRange.value;
-    bpmInput.value = bpmRange.value;
-    setCircle(bpmInput.value);
-    let cycleLength = bpmToCycle(bpmRange.value);
-    changeMetronome(cycleLength);
+    setNumbers();
   }
 });
 
@@ -38,13 +30,15 @@ button.addEventListener("click", function () {
   toggleMetronome(bpmToCycle(bpmInput.value));
 });
 
-bpmRange.addEventListener("input", () => {
+bpmRange.addEventListener("input", setNumbers);
+
+function setNumbers() {
   displayNumber.innerHTML = bpmRange.value;
   bpmInput.value = bpmRange.value;
   setCircle(bpmInput.value);
   let cycleLength = bpmToCycle(bpmRange.value);
   changeMetronome(cycleLength);
-});
+}
 
 bpmInput.addEventListener("input", (e) => {
   let cycleLength = bpmToCycle(e.target.value);
