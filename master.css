@@ -7,6 +7,10 @@ svg {
 
   transform: translateX(-50%);
 }
+
+body {
+  background-color: rgb(158, 188, 216);
+}
 .controls {
   display: flex;
   align-items: center;
@@ -22,10 +26,14 @@ svg {
   position: relative;
 }
 
+.card {
+  box-shadow: 0px 0px 30px -5px rgba(5, 8, 46, 0.431);
+}
 button {
   width: 100%;
   margin-top: 5px;
   margin-bottom: 30px;
+  box-shadow: 0px 0px 50px 0px rgba(5, 8, 46, 0.431);
 }
 p {
   font-size: 50px;
