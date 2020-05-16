@@ -14,6 +14,7 @@ const playClick = () => click.play();
 
 let cycleLength;
 
+// Links up metronome play and pause to space, and change tempo to left and right
 document.addEventListener("keydown", (e) => {
   if (e.keyCode == "32") {
     toggleMetronome(bpmToCycle(bpmInput.value));
@@ -32,6 +33,8 @@ button.addEventListener("click", function () {
 
 bpmRange.addEventListener("input", setNumbers);
 
+// Links range to the different display numbers, and sets circle size,
+// converts tempo to cycle length, and changes metronome interval
 function setNumbers() {
   displayNumber.innerHTML = bpmRange.value;
   bpmInput.value = bpmRange.value;
@@ -40,6 +43,7 @@ function setNumbers() {
   changeMetronome(cycleLength);
 }
 
+// Similar to setNumbers, but works for inputting numbers into bpmInput
 bpmInput.addEventListener("input", (e) => {
   let cycleLength = bpmToCycle(e.target.value);
   changeMetronome(cycleLength);
@@ -48,6 +52,7 @@ bpmInput.addEventListener("input", (e) => {
   displayNumber.innerHTML = `${e.target.value}`;
 });
 
+// Changes the interval when the metronome is playing
 function changeMetronome(cycleLength) {
   if (isPlaying) {
     clearInterval(interval);
@@ -57,6 +62,7 @@ function changeMetronome(cycleLength) {
   }
 }
 
+// Starts or stops the metronome with the passed cycle length
 function toggleMetronome(cycleLength) {
   if (isPlaying) {
     isPlaying = false;
@@ -72,6 +78,8 @@ function toggleMetronome(cycleLength) {
     interval = setInterval(playClick, cycleLength);
   }
 }
+// Sets circle size, changes colour to red if input is outside of working
+// metronome range
 function setCircle(bpm) {
   if (bpm > 160 || bpm < 40) {
     innerCircle.setAttribute("fill", "crimson");
@@ -82,10 +90,14 @@ function setCircle(bpm) {
   }
 }
 
+// Sets the interval of the circle pulse to cycleLength, and invokes the pulse function
+// with the parameter as cycleLength
 function setPulse(cycleLength) {
   pulseInterval = setInterval(pulse, cycleLength, cycleLength);
 }
 
+// Sets a timeout for half of the cycleLength, when that occurs, the circle expands by
+// 10px - setPulse and pulse are purely aesthetic
 function pulse(cycleLength) {
   innerCircle.setAttribute("r", 1.5 * bpmInput.value);
   setTimeout(() => {
